@@ -1,0 +1,30 @@
+TARGETNAME = coap-client
+TARGETTYPE = PROGRAM
+
+UMTYPE=console
+USE_MSVCRT=1
+USE_UNICRT=1
+UNICODE=1
+UMENTRY=wmain
+
+INCLUDES=\
+         $(SDK_INC_PATH); \
+         ..\lib; \
+
+
+C_DEFINES=$(C_DEFINES) -DWITH_POSIX -DWINSOCK
+
+
+SOURCES=\
+        client.c    \
+        coap_list.c \
+        getopt.c    \
+
+TARGETLIBS=\
+        $(SDK_LIB_PATH)\kernel32.lib \
+        $(SDK_LIB_PATH)\ws2_32.lib \
+	$(SDK_LIB_PATH)\user32.lib \
+	$(PROJECT_OBJ_ROOT)\coap\src\lib\$(O)\coap.lib \
+
+
+MSC_WARNING_LEVEL = $(MSC_WARNING_LEVEL) /wd4127 /wd4200 /wd4267 /wd4242 /wd4204 /wd4100 /wd4706 /wd4101 /wd4189 
